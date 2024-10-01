@@ -133,6 +133,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="starter.h" />
+    <ClInclude Include="twoHello.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="glad.c" />

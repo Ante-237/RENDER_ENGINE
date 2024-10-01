@@ -1,8 +1,7 @@
+#include "twoHello.h"
 #include <iostream>
-#include "starter.h"
 #include <glad/glad.h>
 #include <GLFW/glfw3.h>
-#include "twoHello.h"
 
 using namespace std;
 
@@ -17,19 +16,8 @@ void processInput(GLFWwindow* window);
 #pragma endregion
 
 
-int main() {
-	bool retFlag;
+int exercise() {
 
-
-	int retVal = MainExecution(retFlag);
-	if (retFlag) return retVal;
-
-	return 0;
-}
-
-int MainExecution(bool& retFlag)
-{
-	retFlag = true;
 	glfwInit();
 	glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 3);
 	glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 3);
@@ -80,59 +68,34 @@ int MainExecution(bool& retFlag)
 		0, -0.5f, 0,
 		0.5f, -0.5f, 0,
 		0.5f, 0.5f, 0,
+	};
 
-
+	unsigned int indices[] = {
+		0, 1, 3,
+		1, 2, 3
 	};
 
 
-
-	float verticesOne[] = {
-		/*	-0.5f, 0.5f, 0,
-			-0.5f, -0.5f, 0,
-			0, -0.5f, 0,*/
-
-			-0.7f, -0.7f, 0,
-			-0.7f, 0.7f, 0,
-			0.7f, 0.7f, 0,
-			0.7f, 0.7f, 0,
-			-0.7f, -0.7f, 0,
-		    0.7f, -0.7f, 0
-			
-	};
-
-	float verticesTwo[] = { 0, 0.5f, 0,0.5f, 0.5f, 0,0.5f, -0.5f, 0, };
-
-	//unsigned int indices[] = {
-	//	0, 1, 3,
-	//	1, 2, 3
-	//};
-
-
-	unsigned int VBOs[2];
-	unsigned int VAOs[2];
-
-	glGenBuffers(2, VBOs);
+	unsigned int VBO;
+	glGenBuffers(1, &VBO);
 
 	// unsigned int EBO;
 	// glGenBuffers(1, &EBO);
 
-	glGenVertexArrays(2, VAOs);
-
-	glBindVertexArray(VAOs[0]);
-	glBindBuffer(GL_ARRAY_BUFFER, VBOs[0]);
-	glBufferData(GL_ARRAY_BUFFER, sizeof(verticesOne), verticesOne, GL_STATIC_DRAW);
-	glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 3 * sizeof(float), (void*)0);
-	glEnableVertexAttribArray(0);
+	unsigned int VAO;
+	glGenVertexArrays(1, &VAO);
+	glBindVertexArray(VAO);
 
 
-	glBindVertexArray(VAOs[1]);
-	glBindBuffer(GL_ARRAY_BUFFER, VBOs[1]);
-	glBufferData(GL_ARRAY_BUFFER, sizeof(verticesTwo), verticesTwo, GL_STATIC_DRAW);
-	glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 0, (void*)0);
-	glEnableVertexAttribArray(0);
+
+	glBindBuffer(GL_ARRAY_BUFFER, VBO);
+	glBufferData(GL_ARRAY_BUFFER, sizeof(vertices), vertices, GL_STATIC_DRAW);
 
 	// glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, EBO);
 	// glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(indices), indices, GL_STATIC_DRAW);
+
+
+
 
 	const char* vertexShaderSource = "#version 330 core\n"
 		"layout (location = 0) in vec3 aPos;\n"
@@ -165,39 +128,16 @@ int MainExecution(bool& retFlag)
 		"FragColor = vec4(1.0f, 0.5f, 0.2f, 1.0f);\n"
 		"}\n";
 
-	const char* fragmentShaderSourceYellow = "#version 330 core\n"
-		"out vec4 FragColor;\n"
-		"void main()\n"
-		"{\n"
-		"FragColor = vec4(1.0f, 1.0f, 0.1f, 1.0f);\n"
-		"}\n";
+	unsigned int fragmentShader;
+	fragmentShader = glCreateShader(GL_FRAGMENT_SHADER);
+	glShaderSource(fragmentShader, 1, &fragmentShaderSource, NULL);
+	glCompileShader(fragmentShader);
 
-
-	unsigned int fragmentShader[2];
-	fragmentShader[0] = glCreateShader(GL_FRAGMENT_SHADER);
-	glShaderSource(fragmentShader[0], 1, &fragmentShaderSource, NULL);
-	glCompileShader(fragmentShader[0]);
-
-	glGetShaderiv(fragmentShader[0], GL_COMPILE_STATUS, &success);
+	glGetShaderiv(fragmentShader, GL_COMPILE_STATUS, &success);
 
 	if (!success) {
-		glGetShaderInfoLog(fragmentShader[0], 512, NULL, infoLog);
-		cout << "ERROR::SHADER::FRAGMENT::COMPLICATION_FAILED\n" << infoLog << endl;
-	}
-	else {
-		cout << "SUCCESS::SHADER::FRAGMENT" << endl;
-	}
-
-
-	fragmentShader[1] = glCreateShader(GL_FRAGMENT_SHADER);
-	glShaderSource(fragmentShader[1], 1, &fragmentShaderSourceYellow, NULL);
-	glCompileShader(fragmentShader[1]);
-
-	glGetShaderiv(fragmentShader[1], GL_COMPILE_STATUS, &success);
-
-	if (!success) {
-		glGetShaderInfoLog(fragmentShader[1], 512, NULL, infoLog);
-		cout << "ERROR::SHADER::FRAGMENT::COMPLICATION_FAILED\n" << infoLog << endl;
+		glGetShaderInfoLog(fragmentShader, 512, NULL, infoLog);
+		cout << "ERROR::SHADER::VERTEXT::COMPLICATION_FAILED\n" << infoLog << endl;
 	}
 	else {
 		cout << "SUCCESS::SHADER::FRAGMENT" << endl;
@@ -208,42 +148,23 @@ int MainExecution(bool& retFlag)
 
 #pragma region SHADER PROGRAM
 
-	unsigned int shaderProgram[2];
-	shaderProgram[0] = glCreateProgram();
-	glAttachShader(shaderProgram[0], vertexShader);
-	glAttachShader(shaderProgram[0], fragmentShader[0]);
-	glLinkProgram(shaderProgram[0]);
+	unsigned int shaderProgram;
+	shaderProgram = glCreateProgram();
+	glAttachShader(shaderProgram, vertexShader);
+	glAttachShader(shaderProgram, fragmentShader);
+	glLinkProgram(shaderProgram);
 
-	glGetProgramiv(shaderProgram[0], GL_LINK_STATUS, &success);
+	glGetProgramiv(shaderProgram, GL_LINK_STATUS, &success);
 	if (!success) {
-		glGetProgramInfoLog(shaderProgram[0], 512, NULL, infoLog);
+		glGetProgramInfoLog(shaderProgram, 512, NULL, infoLog);
 	}
 
 	glDeleteShader(vertexShader);
-	glDeleteShader(fragmentShader[0]);
-
-
-
-	shaderProgram[1] = glCreateProgram();
-	glAttachShader(shaderProgram[1], vertexShader);
-	glAttachShader(shaderProgram[1], fragmentShader[1]);
-	glLinkProgram(shaderProgram[1]);
-
-	glGetProgramiv(shaderProgram[1], GL_LINK_STATUS, &success);
-	if (!success) {
-		glGetProgramInfoLog(shaderProgram[1], 512, NULL, infoLog);
-	}
-
-	glDeleteShader(vertexShader);
-	glDeleteShader(fragmentShader[1]);
-	glDeleteShader(fragmentShader[0]);
-
-
-
-
-
+	glDeleteShader(fragmentShader);
 #pragma endregion
 
+	glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 3 * sizeof(float), (void*)0);
+	glEnableVertexAttribArray(0);
 
 
 
@@ -253,33 +174,19 @@ int MainExecution(bool& retFlag)
 		glClearColor(0.2f, 0.3f, 0.3f, 1.0f);
 		glClear(GL_COLOR_BUFFER_BIT);
 
-		glUseProgram(shaderProgram[0]);
-
-		glBindVertexArray(VAOs[0]);
-		glDrawArrays(GL_TRIANGLES, 0, 6);
-
-		glUseProgram(shaderProgram[1]);
-
-		glBindVertexArray(VAOs[1]);
+		glUseProgram(shaderProgram);
+		glBindVertexArray(VAO);
 		glDrawArrays(GL_TRIANGLES, 0, 3);
 		// glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, 0);
 		// glBindVertexArray(0);
-
-
 
 		glfwSwapBuffers(window);
 		glfwPollEvents();
 	}
 
-	glDeleteVertexArrays(2, VAOs);
-	glDeleteBuffers(2, VBOs);
-	glDeleteProgram(shaderProgram[1]);
-	glDeleteProgram(shaderProgram[0]);
-
-
 	glfwTerminate();
-	retFlag = false;
-	return {};
+
+	return 0;
 }
 
 void processInput(GLFWwindow* window) {
