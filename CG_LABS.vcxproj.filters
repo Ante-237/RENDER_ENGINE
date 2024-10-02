@@ -18,7 +18,7 @@
     <ClInclude Include="starter.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="twoHello.h">
+    <ClInclude Include="Shader.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

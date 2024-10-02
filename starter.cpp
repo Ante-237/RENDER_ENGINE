@@ -2,7 +2,6 @@
 #include "starter.h"
 #include <glad/glad.h>
 #include <GLFW/glfw3.h>
-#include "twoHello.h"
 
 using namespace std;
 
@@ -50,7 +49,7 @@ int MainExecution(bool& retFlag)
 		return -1;
 	}
 
-	glViewport(0, 0, 800, 600);
+	glViewport(0, 0, 1200, 600);
 
 	glfwSetFramebufferSizeCallback(window, framebuffer_size_callback);
 
@@ -91,28 +90,28 @@ int MainExecution(bool& retFlag)
 			-0.5f, -0.5f, 0,
 			0, -0.5f, 0,*/
 
-			-0.7f, 0, 0,     1.0f, 0.0f, 0.0f,
-			-0.7f, -0.7f, 0, 0.0f, 1.0f, 0.0f,
-			0.7f, 0.0f, 0,   0.0f, 0.0f, 1.0f,
+			-0.7f, 0, 0,      1.0f, 0.0f, 0.0f,
+			-0.7f, -0.7f, 0,  0.0f, 1.0f, 0.0f,
+			0.7f, 0.0f, 0,    0.0f, 0.0f, 1.0f,
 
 			0.7f, 0.0f, 0,    1.0f, 0.0f, 0.0f,
 			-0.7f, -0.7f, 0,  0.0f, 1.0f, 0.0f,
 		    0.7f, -0.7f, 0,	  0.0f, 0.0f, 1.0f,
 
-			-0.7f, 0, 0,		 1.0f, 0.0f, 0.0f,
-			-0.5f, 0, 0,		 0.0f, 1.0f, 0.0f,
-			-0.5f, 0.3f, 0,		 0.0f, 0.0f, 1.0f,
+			-0.7f, 0, 0,	  1.0f, 0.0f, 0.0f,
+			-0.5f, 0, 0,	  0.0f, 1.0f, 0.0f,
+			-0.5f, 0.3f, 0,	  0.0f, 0.0f, 1.0f,
 
-			0.5f, 0.3f, 0,		    1.0f, 0.0f, 0.0f,
-			-0.5f, 0.3f, 0,		    0.0f, 1.0f, 0.0f,
-			-0.5f, 0, 0,		    0.0f, 0.0f, 1.0f,
+			0.5f, 0.3f, 0,	  1.0f, 0.0f, 0.0f,
+			-0.5f, 0.3f, 0,	  0.0f, 1.0f, 0.0f,
+			-0.5f, 0, 0,	  0.0f, 0.0f, 1.0f,
 		
-		    -0.5f, 0, 0,			   1.0f, 0.0f, 0.0f,
-			0.5f, 0.3f, 0,			   0.0f, 1.0f, 0.0f,
-			0.5f, 0, 0,				   0.0f, 0.0f, 1.0f,
+		    -0.5f, 0, 0,	  1.0f, 0.0f, 0.0f,
+			0.5f, 0.3f, 0,	  0.0f, 1.0f, 0.0f,
+			0.5f, 0, 0,		  0.0f, 0.0f, 1.0f,
 
-			0.7f, 0, 0,				 1.0f, 0.0f, 0.0f,
-			0.5f, 0.3f, 0,			 0.0f, 1.0f, 0.0f,
+			0.7f, 0, 0,		 1.0f, 0.0f, 0.0f,
+			0.5f, 0.3f, 0,	 0.0f, 1.0f, 0.0f,
 			0.5f, 0, 0,		 0.0f, 0.0f, 1.0f
 
 	};
@@ -193,11 +192,14 @@ int MainExecution(bool& retFlag)
 	const char* vertexShaderSource = "#version 330 core\n"
 		"layout (location = 0) in vec3 aPos;\n"
 		"layout (location = 1) in vec3 aColor;\n"
+		"uniform float offset;\n"
 		"out vec3 ourColor;\n"
 		"void main()\n"
 		"{\n"
-		"gl_Position = vec4(aPos, 1.0);\n"
-		"ourColor = aColor;\n"
+		// inverst the current vertex object
+		// "gl_Position = vec4(aPos.x + offset, aPos.y * -1 , aPos.z , 1.0);\n"
+		"gl_Position = vec4(aPos.x + offset, aPos.y  , aPos.z , 1.0);\n"
+		"ourColor = gl_Position.xyz;\n"
 		"}\0";
 
 	unsigned int vertexShader;
@@ -354,12 +356,23 @@ int MainExecution(bool& retFlag)
 		glClear(GL_COLOR_BUFFER_BIT);
 
 		glUseProgram(shaderProgram[0]);
-		glUseProgram(shaderProgram[0]);
+
+		float timeMove = glfwGetTime();
+		float Move = sin(timeMove) * 0.2;
+		
+		int vertexLocation = glGetUniformLocation(shaderProgram[0], "offset");
+		glUniform1f(vertexLocation, Move);
 
 		glBindVertexArray(VAOs[0]);
 		glDrawArrays(GL_TRIANGLES, 0, 18);
 
 		glUseProgram(shaderProgram[1]);
+
+		int vertexSecondLocation = glGetUniformLocation(shaderProgram[1], "offset");
+		glUniform1f(vertexSecondLocation, Move);
+		
+
+		
 
 		glBindVertexArray(VAOs[1]);
 		glDrawArrays(GL_TRIANGLES, 0, 6);
@@ -367,6 +380,9 @@ int MainExecution(bool& retFlag)
 		// glBindVertexArray(0);
 
 		glUseProgram(shaderProgram[2]);
+		int vertexThirdLocation = glGetUniformLocation(shaderProgram[2], "offset");
+		glUniform1f(vertexThirdLocation, Move);
+
 
 		float timeValue = glfwGetTime();
 		float greenValue = sin(timeValue) / 2.0f + 0.5f;
@@ -416,5 +432,3 @@ void processInput(GLFWwindow* window) {
 void framebuffer_size_callback(GLFWwindow* window, int width, int height) {
 	glViewport(0, 0, width, height);
 }
-
-
