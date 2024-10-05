@@ -46,5 +46,6 @@
     <None Include="3.3shader.fs" />
     <None Include="4.2.texture.vs" />
     <None Include="4.2.texture.fs" />
+    <None Include="4.2.2.texture.vs" />
   </ItemGroup>
 </Project>
