@@ -24,6 +24,9 @@
     <ClInclude Include="std_image.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="Camera.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="starter.cpp">
@@ -33,6 +36,9 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="std_image.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Camera.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -47,5 +53,9 @@
     <None Include="4.2.texture.vs" />
     <None Include="4.2.texture.fs" />
     <None Include="4.2.2.texture.vs" />
+    <None Include="1.color.vs" />
+    <None Include="1.color.fs" />
+    <None Include="1.light_cube.vs" />
+    <None Include="1.light_cube.fs" />
   </ItemGroup>
 </Project>

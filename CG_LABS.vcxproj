@@ -133,11 +133,13 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="Camera.h" />
     <ClInclude Include="Shader.h" />
     <ClInclude Include="starter.h" />
     <ClInclude Include="std_image.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="Camera.cpp" />
     <ClCompile Include="glad.c" />
     <ClCompile Include="starter.cpp" />
     <ClCompile Include="std_image.cpp" />
@@ -146,6 +148,10 @@
     <Image Include="..\..\..\Downloads\window.jpg" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="1.color.fs" />
+    <None Include="1.color.vs" />
+    <None Include="1.light_cube.fs" />
+    <None Include="1.light_cube.vs" />
     <None Include="3.3.shader.vs" />
     <None Include="3.3shader.fs" />
     <None Include="4.2.2.texture.vs" />
