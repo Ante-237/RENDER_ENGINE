@@ -104,48 +104,56 @@ int Introlighting() {
 
 
 	float vertices[] = {
-		-0.5f, -0.5f, -0.5f,
-		 0.5f, -0.5f, -0.5f,
-		 0.5f,  0.5f, -0.5f,
-		 0.5f,  0.5f, -0.5f,
-		-0.5f,  0.5f, -0.5f,
-		-0.5f, -0.5f, -0.5f,
 
-		-0.5f, -0.5f,  0.5f,
-		 0.5f, -0.5f,  0.5f,
-		 0.5f,  0.5f,  0.5f,
-		 0.5f,  0.5f,  0.5f,
-		-0.5f,  0.5f,  0.5f,
-		-0.5f, -0.5f,  0.5f,
-
-		-0.5f,  0.5f,  0.5f,
-		-0.5f,  0.5f, -0.5f,
-		-0.5f, -0.5f, -0.5f,
-		-0.5f, -0.5f, -0.5f,
-		-0.5f, -0.5f,  0.5f,
-		-0.5f,  0.5f,  0.5f,
-
-		 0.5f,  0.5f,  0.5f,
-		 0.5f,  0.5f, -0.5f,
-		 0.5f, -0.5f, -0.5f,
-		 0.5f, -0.5f, -0.5f,
-		 0.5f, -0.5f,  0.5f,
-		 0.5f,  0.5f,  0.5f,
-
-		-0.5f, -0.5f, -0.5f,
-		 0.5f, -0.5f, -0.5f,
-		 0.5f, -0.5f,  0.5f,
-		 0.5f, -0.5f,  0.5f,
-		-0.5f, -0.5f,  0.5f,
-		-0.5f, -0.5f, -0.5f,
-
-		-0.5f,  0.5f, -0.5f,
-		 0.5f,  0.5f, -0.5f,
-		 0.5f,  0.5f,  0.5f,
-		 0.5f,  0.5f,  0.5f,
-		-0.5f,  0.5f,  0.5f,
-		-0.5f,  0.5f, -0.5f,
+		// position			// normals				//  // texture coords
+													// 
+		-0.5f,-0.5f,-0.5f,	 0.0f, 0.0f,-1.0f,		//  0.0f, 0.0f,
+		 0.5f,-0.5f,-0.5f,	 0.0f, 0.0f,-1.0f,		//  1.0f, 0.0f,
+		 0.5f, 0.5f,-0.5f,	 0.0f, 0.0f,-1.0f,		//  1.0f, 1.0f,
+		 0.5f, 0.5f,-0.5f,	 0.0f, 0.0f,-1.0f,		//  1.0f, 1.0f,
+		 -0.5f, 0.5f,-0.5f	, 0.0f, 0.0f,-1.0f	,   //  0.0f, 1.0f,
+		 -0.5f,-0.5f,-0.5f	, 0.0f, 0.0f,-1.0f	,   //  0.0f, 0.0f,
+													// 
+		-0.5f,-0.5f, 0.5f,	 0.0f, 0.0f, 1.0f,		//  0.0f, 0.0f,
+		 0.5f,-0.5f, 0.5f,	 0.0f, 0.0f, 1.0f,		//  1.0f, 0.0f,
+		 0.5f, 0.5f, 0.5f,	 0.0f, 0.0f, 1.0f,		//  1.0f, 1.0f,
+		 0.5f, 0.5f, 0.5f,	 0.0f, 0.0f, 1.0f,		//  1.0f, 1.0f,
+		 -0.5f, 0.5f, 0.5f	, 0.0f, 0.0f, 1.0f	,   //  0.0f, 1.0f,
+		 -0.5f,-0.5f, 0.5f	, 0.0f, 0.0f, 1.0f	,   //  0.0f, 0.0f,
+													// 
+													// 
+		 -0.5f, 0.5f, 0.5f	,-1.0f, 0.0f, 0.0f	,	//  1.0f, 0.0f,
+		 -0.5f, 0.5f,-0.5f	,-1.0f, 0.0f, 0.0f	,	//  1.0f, 1.0f,
+		 -0.5f,-0.5f,-0.5f	,-1.0f, 0.0f, 0.0f	,	//  0.0f, 1.0f,
+		 -0.5f,-0.5f,-0.5f	,-1.0f, 0.0f, 0.0f	,	//  0.0f, 1.0f,
+		 -0.5f,-0.5f, 0.5f	,-1.0f, 0.0f, 0.0f	,	//  0.0f, 0.0f,
+		 -0.5f, 0.5f, 0.5f	,-1.0f, 0.0f, 0.0f	,	//  1.0f, 0.0f,
+													// 
+													// 
+		0.5f, 0.5f, 0.5f,	1.0f, 0.0f, 0.0f,		// 1.0f, 0.0f,
+		0.5f, 0.5f,-0.5f,	1.0f, 0.0f, 0.0f,		// 1.0f, 1.0f,
+		0.5f,-0.5f,-0.5f,	1.0f, 0.0f, 0.0f,		// 0.0f, 1.0f,
+		0.5f,-0.5f,-0.5f,	1.0f, 0.0f, 0.0f,		// 0.0f, 1.0f,
+		0.5f,-0.5f, 0.5f,	1.0f, 0.0f, 0.0f,		// 0.0f, 0.0f,
+		0.5f, 0.5f, 0.5f,	1.0f, 0.0f, 0.0f,		// 1.0f, 0.0f,
+													// 
+													// 
+		-0.5f,-0.5f,-0.5f,	 0.0f,-1.0f, 0.0f,		//  0.0f, 1.0f,
+		 0.5f,-0.5f,-0.5f,	 0.0f,-1.0f, 0.0f,		//  1.0f, 1.0f,
+		 0.5f,-0.5f, 0.5f,	 0.0f,-1.0f, 0.0f,		//  1.0f, 0.0f,
+		 0.5f,-0.5f, 0.5f,	 0.0f,-1.0f, 0.0f,		//  1.0f, 0.0f,
+		 -0.5f,-0.5f, 0.5f	, 0.0f,-1.0f, 0.0f,		// 0.0f, 0.0f,
+		 -0.5f,-0.5f,-0.5f	, 0.0f,-1.0f, 0.0f,		// 0.0f, 1.0f
+													// 
+													// 
+		-0.5f, 0.5f,-0.5f,	 0.0f, 1.0f, 0.0f,		//  0.0f, 1.0f,
+		 0.5f, 0.5f,-0.5f,	 0.0f, 1.0f, 0.0f,		//  1.0f, 1.0f,
+		 0.5f, 0.5f, 0.5f,	 0.0f, 1.0f, 0.0f,		//  1.0f, 0.0f,
+		 0.5f, 0.5f, 0.5f,	 0.0f, 1.0f, 0.0f,		//  1.0f, 0.0f,
+		-0.5f, 0.5f, 0.5f,	 0.0f, 1.0f, 0.0f,		//  0.0f, 0.0f,
+		-0.5f, 0.5f,-0.5f,	 0.0f, 1.0f, 0.0f,		//  0.0f, 1.0
 	};
+
 	// first, configure the cube's VAO (and VBO)
 	unsigned int VBO, cubeVAO;
 	glGenVertexArrays(1, &cubeVAO);
@@ -157,19 +165,24 @@ int Introlighting() {
 	glBindVertexArray(cubeVAO);
 
 	// position attribute
-	glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 3 * sizeof(float), (void*)0);
+	glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 6 * sizeof(float), (void*)0);
 	glEnableVertexAttribArray(0);
 
-	// second, configure the light's VAO (VBO stays the same; the vertices are the same for the light object which is also a 3D cube)
+	glVertexAttribPointer(1, 3, GL_FLOAT, GL_FALSE, 6 * sizeof(float), (void*)(3 * sizeof(float)));
+	glEnableVertexAttribArray(1);
+
+	
 	unsigned int lightCubeVAO;
 	glGenVertexArrays(1, &lightCubeVAO);
 	glBindVertexArray(lightCubeVAO);
 
-	// we only need to bind to the VBO (to link it with glVertexAttribPointer), no need to fill it; the VBO's data already contains all we need (it's already bound, but we do it again for educational purposes)
+	
 	glBindBuffer(GL_ARRAY_BUFFER, VBO);
 
-	glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 3 * sizeof(float), (void*)0);
+	glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 6 * sizeof(float), (void*)0);
 	glEnableVertexAttribArray(0);
+
+	
 
 
 	while (!glfwWindowShouldClose(window))
@@ -182,7 +195,7 @@ int Introlighting() {
 		
 		processInput(window);
 
-	
+	    
 		glClearColor(0.1f, 0.1f, 0.1f, 1.0f);
 		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
@@ -190,10 +203,8 @@ int Introlighting() {
 		lightingShader.use();
 		lightingShader.setVec3("objectColor", glm::vec3( 1.0f, 0.5f, 0.31f));
 		lightingShader.setVec3("lightColor",glm::vec3( 1.0f, 1.0f, 1.0f));
+		lightingShader.setVec3("lightPos", lightPos);
 
-
-
-	
 		glm::mat4 projection = glm::perspective(glm::radians(camera.Zoom), (float)SCR_WIDTH / (float)SCR_HEIGHT, 0.1f, 100.0f);
 		glm::mat4 view = camera.GetViewMatrix();
 		lightingShader.setMat4("projection", projection);
@@ -1174,7 +1185,7 @@ void processInput(GLFWwindow* window) {
 		cout << "Escape Key Pressed to quit" << endl;
 	}
 
-	if (glfwGetKey(window, GLFW_KEY_W) == GLFW_PRESS) {
+	if (glfwGetKey(window, GLFW_KEY_M) == GLFW_PRESS) {
 		glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
 	}
 
