@@ -37,7 +37,7 @@ float lastY = 600.0 / 2.0;
 float fov = 45.0f;
 
 // lighting
-glm::vec3 lightPos(1.2f, 1.0f, 2.0f);
+glm::vec3 lightPos(1.2f, 0.0f, 2.0f);
 Camera camera(glm::vec3(0.0f, 0.0f, 3.0f));
 
 
@@ -204,6 +204,7 @@ int Introlighting() {
 		lightingShader.setVec3("objectColor", glm::vec3( 1.0f, 0.5f, 0.31f));
 		lightingShader.setVec3("lightColor",glm::vec3( 1.0f, 1.0f, 1.0f));
 		lightingShader.setVec3("lightPos", lightPos);
+		lightingShader.setVec3("viewPos", camera.Position);
 
 		glm::mat4 projection = glm::perspective(glm::radians(camera.Zoom), (float)SCR_WIDTH / (float)SCR_HEIGHT, 0.1f, 100.0f);
 		glm::mat4 view = camera.GetViewMatrix();
@@ -217,8 +218,6 @@ int Introlighting() {
 	
 		glBindVertexArray(cubeVAO);
 		glDrawArrays(GL_TRIANGLES, 0, 36);
-
-
 		
 		lightCubeShader.use();
 		lightCubeShader.setVec3("lightColor", glm::vec3(1.0f, 1.0f, 1.0f));
@@ -229,6 +228,11 @@ int Introlighting() {
 		model = glm::translate(model, lightPos);
 		model = glm::scale(model, glm::vec3(0.2f)); 
 		lightCubeShader.setMat4("model", model);
+
+
+		// lightPos = glm::translate(glm::vec4(lightPos, 0)) * deltaTime;
+		lightPos.x = 1.0f + sin(glfwGetTime()) * 2.0f;
+		lightPos.z = 1.0f + cos(glfwGetTime()) * 2.0f;
 
 		glBindVertexArray(lightCubeVAO);
 		glDrawArrays(GL_TRIANGLES, 0, 36);
