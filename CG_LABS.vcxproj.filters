@@ -57,5 +57,9 @@
     <None Include="1.color.fs" />
     <None Include="1.light_cube.vs" />
     <None Include="1.light_cube.fs" />
+    <None Include="2.colorm.vs" />
+    <None Include="2.colorm.fs" />
+    <None Include="lightmap.fs" />
+    <None Include="lightmap.vs" />
   </ItemGroup>
 </Project>

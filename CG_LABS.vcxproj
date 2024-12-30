@@ -152,11 +152,15 @@
     <None Include="1.color.vs" />
     <None Include="1.light_cube.fs" />
     <None Include="1.light_cube.vs" />
+    <None Include="2.colorm.fs" />
+    <None Include="2.colorm.vs" />
     <None Include="3.3.shader.vs" />
     <None Include="3.3shader.fs" />
     <None Include="4.2.2.texture.vs" />
     <None Include="4.2.texture.fs" />
     <None Include="4.2.texture.vs" />
+    <None Include="lightmap.fs" />
+    <None Include="lightmap.vs" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
