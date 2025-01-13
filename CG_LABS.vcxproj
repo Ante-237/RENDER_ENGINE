@@ -71,8 +71,8 @@
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
-    <LibraryPath>C:\Users\akuma\2024\COMPUTER GRAPHICS\CG_LABS\dependencies\glfw-3.4.bin.WIN64\lib-vc2022;$(LibraryPath)</LibraryPath>
-    <IncludePath>C:\Users\akuma\2024\COMPUTER GRAPHICS\CG_LABS\dependencies\glm;C:\Users\akuma\2024\COMPUTER GRAPHICS\CG_LABS\dependencies\glad\include;C:\Users\akuma\2024\COMPUTER GRAPHICS\CG_LABS\dependencies\glfw-3.4.bin.WIN64\include;$(IncludePath)</IncludePath>
+    <LibraryPath>C:\Users\Lenovo\2025\RENDER_ENGINE\dependencies\glfw-3.4.bin.WIN64\lib-vc2022;$(LibraryPath)</LibraryPath>
+    <IncludePath>C:\Users\Lenovo\2025\RENDER_ENGINE\dependencies\glm;C:\Users\Lenovo\2025\RENDER_ENGINE\dependencies\glad\include;C:\Users\Lenovo\2025\RENDER_ENGINE\dependencies\glfw-3.4.bin.WIN64\include;$(IncludePath)</IncludePath>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
